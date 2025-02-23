@@ -1,22 +1,33 @@
+import { defineStore } from "pinia";
 
-import { defineStore } from 'pinia'
+import { getVideoList } from "~/apis/videos";
 
-import {getVideoList} from "~/apis/videos";
+import type { videos } from "./type";
 
-import type {videos} from './type'
+export default defineStore("videos", () => {
+  const videoPointerNone = ref(false);
 
-export default defineStore('videos', () => {
   // 定義狀態
-  const videoList=ref<videos[]>([])
+  const videoList = ref<videos[]>([]);
 
-  const getVideo = async () =>{
-    console.log('videoList.value :>> ', videoList.value);
+  const getVideo = async () => {
+    console.log("videoList.value :>> ", videoList.value);
     videoList.value = await getVideoList();
-  }
+  };
 
+  const openVideoPointer = () => {
+    videoPointerNone.value = false;
+  };
+  const closeVideoPointer = () => {
+    videoPointerNone.value = true;
+  };
 
   // 返回所有值和方法
-  return { 
-    videoList,  getVideo 
-  }
-})
+  return {
+    videoList,
+    videoPointerNone,
+    getVideo,
+    openVideoPointer,
+    closeVideoPointer,
+  };
+});

@@ -1,7 +1,10 @@
-import { defineNuxtPlugin } from '#app';
-import { createPinia } from 'pinia';
+// import dayjs from "dayjs";
+// import "dayjs/locale/zh-cn";
+// import relativeTime from "dayjs/plugin/relativeTime";
 
-export default defineNuxtPlugin((nuxtApp) => {
-    const pinia = createPinia();
-    nuxtApp.vueApp.use(pinia);
-});
+// dayjs.extend(relativeTime);
+// dayjs.locale("zh-cn");
+
+// export default defineNuxtPlugin((nuxtApp) => {
+//   nuxtApp.provide("dayjs", dayjs);
+// });
