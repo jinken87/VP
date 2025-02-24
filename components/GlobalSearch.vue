@@ -30,30 +30,44 @@
     </form>
     <div
       v-if="isSearch"
-      class="absolute w-[400px] h-[300px] mt-1 flex justify-center rounded-2xl bg-white text-purple-500"
+      class="absolute w-[400px] h-[300px] mt-1 flex flex-col justify-center rounded-2xl bg-white text-purple-500"
     >
+      <div class="p-4 text-2xl text-black cursor-pointer">
+        <span class="" @click="setSelectValue(1)">{{ "作者" }}</span>
+        <span class=" " @click="setSelectValue(2)">{{ "影片" }}</span>
+        {{ selectValue }}
+      </div>
       <div
         v-if="emptyResults"
         class="results-empty justify-center items-center flex w-full h-full"
       >
         <p>{{ emptyResults }}</p>
       </div>
-      <div v-if="searchResults.length > 0" class="results-container w-full">
+      <div
+        v-if="searchResults.length > 0"
+        class="results-container w-full h-full overflow-auto scrollbar-no-track"
+      >
         <div>{{ searchResults }}</div>
         <div
           v-for="item in searchResults"
           :key="item?.id"
           class="results-item flex flex-col w-full px-4 py-2 hover:bg-gray-100 rounded-xl cursor-pointer z-20"
-          @click="goToDetail(item)"
+          @click="checkToDetail(item)"
         >
-          <div class="flex text-lg font-bold">
-            {{ item.title }}
-          </div>
-          <div class="flex">
-            {{ item.description }}
-          </div>
-          <div>
-            {{ item.id }}
+          <div class="flex items-center gap-2">
+            <img class="w-12 h-12 rounded-full" :src="item.thumbnail" alt="" />
+            <div>
+              <div class="flex text-lg font-bold">
+                {{ item.title || item.username }}
+              </div>
+              <div class="flex">
+                {{ item.description || item.email }}
+              </div>
+            </div>
+
+            <div>
+              {{ item.id }}
+            </div>
           </div>
         </div>
       </div>
@@ -92,13 +106,21 @@ const openSearch = async () => {
   videoStore.closeVideoPointer();
   await userStore.getUsers();
 };
-const goToDetail = (item) => {
-  // e.stopPropagation();
-  // router.push({
-  //   name: "video",
-  //   params: { id: e.id },
-  // });
-  router.push({ path: "/video", query: { id: item.id } });
+// const goToDetail = (item) => {
+
+//   router.push({ path: "/video", query: { id: item.id } });
+// };
+
+const checkToDetail = (item) => {
+  if (selectValue.value === EntityType.VIDEO) {
+    goToDetail(item.id);
+  }
+
+  router.push({ path: "/info", query: { username: item.username } });
+};
+
+const setSelectValue = (EntityType) => {
+  selectValue.value = EntityType;
 };
 
 const search = debounce(async () => {

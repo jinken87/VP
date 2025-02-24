@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full p-6 bg-white rounded-lg shadow overflow-auto">
+  <div class="h-full bg-white rounded-lg shadow overflow-auto">
     <h2 class="text-xl font-bold mb-4">{{ t("recommended_videos") }}</h2>
     <div class="space-y-4">
       <div v-for="video in hotVideos" :key="video.id" class="flex space-x-4">

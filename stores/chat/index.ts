@@ -29,6 +29,7 @@ export default defineStore("chat", () => {
     userId: string,
     username: string,
     content: string,
+    thumbnail: string,
     type = "text"
   ) => {
     await supabase.from("messages").insert([
@@ -37,6 +38,7 @@ export default defineStore("chat", () => {
         sender_id: userId,
         username,
         content,
+        thumbnail: thumbnail,
         type,
       },
     ]);

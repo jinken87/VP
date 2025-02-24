@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+  }
+}
+
+@layer utilities {
+  .scrollbar-no-track {
+    /* Firefox: 設定滾動條顏色，thumb 為你想要的顏色（例如 #888），軌道為透明 */
+    scrollbar-color: #888 transparent;
+    /* Chrome, Safari, Opera */
+  }
+  .scrollbar-no-track::-webkit-scrollbar {
+    width: 8px;
+    /* 調整寬度 */
+  }
+  .scrollbar-no-track::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-no-track::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+}

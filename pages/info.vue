@@ -17,11 +17,11 @@ const route = useRoute();
 const useUser = useUserStore();
 
 const userName = computed(() => {
-  return route.query.name;
+  return route.query.username;
 });
 
 const userList = computed(() => {
-  return useUser.userList.filter((user) => user.name == userName.value);
+  return useUser.userList.filter((user) => user.username === userName.value);
 });
 
 // const showLoginModal = loginStore.showLogin;

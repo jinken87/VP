@@ -1,6 +1,6 @@
 <template>
-  <div class="space-x-4 space-y-4">
-    <div class="aspect-w-16 aspect-h-9 flex mx-4 gap-4">
+  <div class="flex">
+    <div class="aspect-w-16 aspect-h-9 flex flex-col mx-4 gap-2">
       <video
         class="w-[960px] h-[600px] object-cover rounded-lg"
         :class="{ 'pointer-events-none': videoPointerNone }"
@@ -15,13 +15,13 @@
         controls
         :poster="video.thumbnailUrl"
       ></video> -->
-      <div class="flex-1 h-[600px]">
-        <RecommendedVideos :videoList="videoList" />
-      </div>
+      <VideoDesc :videoData="props.videoData" />
+    </div>
+    <div class="flex-1 h-[600px] pr-2">
+      <RecommendedVideos :videoList="videoList" />
     </div>
     <!-- <div>{{ videoList }}</div> -->
-    <div>{{ videoData }}</div>
-    <div class="bg-white rounded-lg shadow p-6">
+    <!-- <div class="bg-white rounded-lg shadow p-6">
       <div class="text-2xl font-bold mb-4">{{ videoData.title }}</div>
       <div class="text-sm font-bold mb-4">
         {{ videoData.description || "-" }}
@@ -46,8 +46,9 @@
           訂閱
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
+  <div>{{ videoData }}</div>
 </template>
 
 <script setup>
