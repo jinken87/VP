@@ -2,6 +2,7 @@
   <!-- <Dialog v-model="show" :content="radioGroup" :submit-fuction="setLang" /> -->
   <Dialog v-model="show">
     <template #content>
+      <CarouselPart />
       <div class="flex flex-col space-y-2">
         <label
           v-for="lang in langList"
@@ -26,6 +27,12 @@
         class="px-4 py-2 bg-blue-500 text-white rounded"
       >
         確定
+      </button>
+      <button
+        @click="show = false"
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        取消
       </button>
     </template>
   </Dialog>

@@ -1,13 +1,15 @@
 <template>
   <div class="bg-white rounded-lg shadow p-6">
-    <div class="text-2xl font-bold mb-4">{{ video.title }}</div>
-    <div class="text-sm font-bold mb-4">
-      {{ video.description || "-" }}
+    <div @click="goToDetail(video.id)">
+      <div class="text-2xl font-bold mb-4">{{ video.title }}</div>
+      <div class="text-sm font-bold mb-4">
+        {{ video.description || "-" }}
+      </div>
     </div>
     <div class="flex items-center justify-between">
       <div
         class="flex items-center space-x-4 cursor-pointer"
-        @click="goToDetail(video.id)"
+        @click="goToUserInfo(video.username)"
       >
         <img
           :src="video.thumbnail"

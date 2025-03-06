@@ -1,107 +1,185 @@
 <template>
-  <div
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
-  >
-    <div class="bg-white p-8 rounded-lg w-96">
-      <h2 class="text-2xl font-bold mb-4">登入</h2>
-      <form @submit.prevent="handleLogin">
-        <div class="mb-4">
-          <label for="username" class="block mb-2">用戶名</label>
-          <input
-            v-model="username"
-            id="username"
-            type="text"
-            class="w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
-        <div class="mb-4">
-          <label for="username" class="block mb-2">信箱</label>
-          <input
-            v-model="email"
-            id="username"
-            type="text"
-            class="w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block mb-2">密碼</label>
-          <input
-            v-model="password"
-            id="password"
-            type="password"
-            class="w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          class="w-full px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
+  <Dialog v-model="show" :title="loginOrRegisterText">
+    <template #content>
+      <div class="bg-white rounded-lg">
+        <h2 class="text-2xl font-bold mb-4">{{ t("login") }}</h2>
+        <form @submit.prevent="handleConfirm">
+          <div class="mb-4">
+            <label for="username" class="block mb-2">{{ t("username") }}</label>
+            <input
+              v-model="username"
+              id="username"
+              type="text"
+              class="w-full px-3 py-2 border rounded"
+              required
+            />
+          </div>
+
+          <div v-if="isRegister" class="mb-4">
+            <label for="username" class="block mb-2">{{ t("email") }}</label>
+            <div class="flex gap-2 mb-4">
+              <span
+                class="p-1 border border-gray-200 bg-gray-200 rounded-lg shadow-md hover:bg-gray-500 cursor-pointer"
+                @click="quickyEmail('@gmail.com')"
+                >{{ "@gmail.com" }}</span
+              >
+              <span
+                class="p-1 border border-gray-200 bg-gray-200 rounded-lg shadow-md hover:bg-gray-500 cursor-pointer"
+                @click="quickyEmail('@mail')"
+                >{{ "@mail" }}</span
+              >
+              <span
+                class="p-1 border border-gray-200 bg-gray-200 rounded-lg shadow-md hover:bg-gray-500 cursor-pointer"
+                @click="quickyEmail('@yahoo.com.tw')"
+                >{{ "@yahoo.com.tw" }}</span
+              >
+            </div>
+            <input
+              v-model="email"
+              id="username"
+              type="text"
+              class="w-full px-3 py-2 border rounded"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="password" class="block mb-2">{{ t("password") }}</label>
+            <input
+              v-model="password"
+              id="password"
+              type="password"
+              class="w-full px-3 py-2 border rounded"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
+          >
+            {{ loginOrRegisterText }}
+          </button>
+        </form>
+      </div>
+    </template>
+    <template #footer>
+      <el-divider>
+        <span
+          class="flex-auto mx-4 text-gray-500 cursor-pointer"
+          @click="switchLoginOrRegister"
         >
-          登入
-        </button>
-      </form>
-      <button
-        @click="closeDialog"
-        class="mt-4 text-gray-600 hover:text-gray-800"
-      >
-        關閉
-      </button>
-      <p>{{ loginStore.isShowDialog }}</p>
-      <span class="cursor-pointer" @click="handleRegister">註冊</span>
-    </div>
-  </div>
+          {{ isRegister ? t("login") : t("register") }}</span
+        >
+      </el-divider>
+    </template>
+  </Dialog>
 </template>
 
 <script setup>
 import useLoginStore from "~/stores/loginAndRegister";
 
-const loginStore = useLoginStore();
-const closeDialog = loginStore.closeDialog;
+const emit = defineEmits(["close", "login"]);
+const { t } = useI18n();
 
+const loginStore = useLoginStore();
+
+const loginOrRegisterText = computed(() => {
+  if (isRegister.value) return t("register");
+  return t("login");
+});
+
+const isRegister = ref(false);
 const username = ref("");
 const email = ref("");
 const password = ref("");
 
-const emit = defineEmits(["close", "login"]);
+const show = computed({
+  get: () => loginStore.isShowDialog,
+  set: (val) => {
+    if (!val) loginStore.closeDialog();
+  },
+});
+
+const quickyEmail = (item) => {
+  if (email.value.includes(item)) return;
+  const split = email.value.split("@") || [];
+  email.value = `${split.length > 0 ? split[0] : email.value}${item}`;
+};
 
 const validator = () => {
   if (
-    username.value.length <= 1 ||
-    email.value.length <= 1 ||
-    password.value.length <= 1
+    username.value.length < 1 ||
+    (isRegister.value && email.value.length < 1) ||
+    password.value.length < 1
   ) {
     return false;
   }
   return true;
 };
 
-const handleLogin = async () => {
-  if (!validator()) return alert("2");
+const switchLoginOrRegister = () => {
+  isRegister.value = !isRegister.value;
+  username.value = "";
+  email.value = "";
+  password.value = "";
+};
 
-  //   loginStore.login(email.value, password.value);
+const handleLogin = async () => {
+  if (!validator()) {
+    return ElMessage({
+      showClose: true,
+      message: t("username_email_or_password_cannot_be_empty"),
+      type: "warning",
+    });
+  }
+
   try {
-    const user = await loginStore.login(email.value, password.value);
+    const user = await loginStore.login(username.value, password.value);
     localStorage.setItem("user", JSON.stringify(user)); // 儲存用戶資訊
     await loginStore.checkAuth();
-    alert("登入成功！");
+    ElMessage({
+      showClose: true,
+      message: t("login_success"),
+      type: "success",
+    });
     loginStore.closeDialog();
   } catch (err) {
-    alert(err.message);
+    return ElMessage({
+      showClose: true,
+      message: err.message,
+      type: "error",
+    });
   }
-  // 這裡應該實現實際的登入邏輯
-  //   emit("login", username.value);
 };
 const handleRegister = async () => {
-  if (!validator()) return alert("2");
-  //   loginStore.register(email.value, password.value, username.value);
+  if (!validator()) {
+    return ElMessage({
+      showClose: true,
+      message: t("username_email_or_password_cannot_be_empty"),
+      type: "warning",
+    });
+  }
   try {
     await loginStore.register(email.value, password.value, username.value);
-    alert("註冊成功，請登入");
+    ElMessage({
+      showClose: true,
+      message: t("register_success_please_login"),
+      type: "success",
+    });
     loginStore.closeDialog();
   } catch (err) {
-    alert(err.message);
+    return ElMessage({
+      showClose: true,
+      message: err.message,
+      type: "error",
+    });
+  }
+};
+
+const handleConfirm = async () => {
+  if (isRegister.value) {
+    await handleRegister();
+  } else {
+    await handleLogin();
   }
 };
 </script>

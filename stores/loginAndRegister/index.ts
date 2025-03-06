@@ -69,11 +69,12 @@ export default defineStore("login", () => {
   };
 
   // 登入用戶（檢查密碼）
-  const login = async (email: string, password: string) => {
+  const login = async (username: string, password: string) => {
     const { data: user, error } = await supabase
       .from("users")
       .select("*")
-      .eq("email", email)
+      .eq("username", username)
+      // .eq("email", email)
       .single();
 
     if (error || !user) throw new Error("帳號不存在");

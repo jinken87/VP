@@ -35,7 +35,6 @@
       <div class="p-4 text-2xl text-black cursor-pointer">
         <span class="" @click="setSelectValue(1)">{{ "作者" }}</span>
         <span class=" " @click="setSelectValue(2)">{{ "影片" }}</span>
-        {{ selectValue }}
       </div>
       <div
         v-if="emptyResults"
@@ -47,7 +46,6 @@
         v-if="searchResults.length > 0"
         class="results-container w-full h-full overflow-auto scrollbar-no-track"
       >
-        <div>{{ searchResults }}</div>
         <div
           v-for="item in searchResults"
           :key="item?.id"
@@ -57,12 +55,24 @@
           <div class="flex items-center gap-2">
             <img class="w-12 h-12 rounded-full" :src="item.thumbnail" alt="" />
             <div>
-              <div class="flex text-lg font-bold">
-                {{ item.title || item.username }}
-              </div>
-              <div class="flex">
-                {{ item.description || item.email }}
-              </div>
+              <div
+                class="flex text-lg font-bold"
+                v-html="
+                  highlightKeyword(
+                    selectValue === EntityType.VIDEO
+                      ? item.title
+                      : item.username
+                  )
+                "
+              ></div>
+              <div
+                class="flex"
+                v-html="
+                  selectValue === EntityType.VIDEO
+                    ? highlightKeyword(item.description)
+                    : item.email
+                "
+              ></div>
             </div>
 
             <div>
@@ -106,21 +116,24 @@ const openSearch = async () => {
   videoStore.closeVideoPointer();
   await userStore.getUsers();
 };
-// const goToDetail = (item) => {
-
-//   router.push({ path: "/video", query: { id: item.id } });
-// };
 
 const checkToDetail = (item) => {
   if (selectValue.value === EntityType.VIDEO) {
-    goToDetail(item.id);
+    goToDetail(item?.id);
   }
 
-  router.push({ path: "/info", query: { username: item.username } });
+  goToUserInfo(item?.username);
 };
 
 const setSelectValue = (EntityType) => {
   selectValue.value = EntityType;
+  search();
+};
+
+const highlightKeyword = (title) => {
+  if (emptyResults.value) return title;
+  const regex = new RegExp(`(${searchQuery.value})`, "gi");
+  return title.replace(regex, '<span style="color: red;">$1</span>');
 };
 
 const search = debounce(async () => {
@@ -139,23 +152,19 @@ const search = debounce(async () => {
     emptyResults.value = "";
     await videoStore.getVideo();
     searchResults.value = videoStore.videoList;
-    searchResults.value = searchResults.value.filter((video) =>
-      video.title
-        .toLowerCase()
-        .includes(
-          searchQuery.value.toLowerCase() ||
-            video.description
-              .toLowerCase()
-              .includes(searchQuery.value.toLowerCase())
-        )
+    searchResults.value = searchResults.value.filter(
+      (video) =>
+        video.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        video.description
+          .toLowerCase()
+          .includes(searchQuery.value.toLowerCase())
     );
   }
   if (selectValue.value === EntityType.USER) {
     emptyResults.value = "";
     await userStore.getUsers();
-    searchResults.value = userStore.userList;
-    searchResults.value = searchResults.value.filter((user) =>
-      user.userName.toLowerCase().includes(searchQuery.value.toLowerCase())
+    searchResults.value = userStore.userList.filter((user) =>
+      user.username.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
   }
 

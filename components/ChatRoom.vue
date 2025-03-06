@@ -1,7 +1,7 @@
 <template>
-  <div v-if="!isTalking" class="chat-close fixed bottom-0 right-0">
+  <div v-if="!isTalking" class="chat-close fixed bottom-2 right-2">
     <img
-      class="w-40 h-40 cursor-pointer"
+      class="w-40 h-40 rounded-full shadow cursor-pointer"
       :src="Chat"
       alt=""
       @click="isTalking = true"
@@ -16,7 +16,7 @@
     >
       <img class="absolute top-[-52px] left-2 w-28 h-28" :src="Chat" alt="" />
       <div class="w-full h-14 px-4 flex items-center">
-        <span class="ml-20 flex-1 text-center">聊天室</span>
+        <span class="ml-20 flex-1 text-center">{{ t("chatroom") }}</span>
         <img
           class="h-8 w-8 cursor-pointer"
           :src="Close"
@@ -82,7 +82,7 @@
       v-if="showScrollButton"
       class="absolute gap-2 flex justify-center items-center w-40 px-2 top-20 left-1/2 bg-orange-100 border border-gray-100 rounded-full -translate-x-1/2 shadow hover:bg-[rgb(239,204,227)] cursor-pointer transition-all duration-300 ease-in-out"
     >
-      <span class="cursor-pointer" @click="toMessageBottom">滾到底部 </span>
+      <span class="cursor-pointer" @click="toMessageBottom">滾到底部</span>
       <img class="w-4 h-4 cursor-pointer" :src="Down" alt="" />
     </div>
   </div>
@@ -97,6 +97,7 @@ import Close from "~/assets/img/close-icon.png";
 import Send from "~/assets/img/send-icon.png";
 import Down from "~/assets/img/down-icon.png";
 
+const { t } = useI18n();
 const loginStore = useLoginStore();
 const useChat = useChatStore();
 const useUser = useUserStore();

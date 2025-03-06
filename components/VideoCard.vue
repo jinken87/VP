@@ -1,5 +1,5 @@
 <template>
-  {{ props.videoList }}
+  <!-- {{ props.videoList }} -->
   <div class="flex w-full flex-wrap gap-4">
     <!-- <span>{{ subscribeStore.subscriptions }}</span> -->
     <div v-for="video in props.videoList" :key="video.id">
@@ -37,9 +37,4 @@ const getTimeDifference = (inputDate) => {
     return `${diffInSeconds}秒前`;
   }
 };
-
-// onMounted(async () => {
-//   console.log(userId.value, "userId.value");
-//   await fetchSubscriptions(userId.value);
-// });
 </script>

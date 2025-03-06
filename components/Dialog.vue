@@ -4,7 +4,6 @@
       v-if="modelValue"
       class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
     >
-      <!-- 彈窗內容 -->
       <div class="bg-white rounded-lg shadow-lg p-6 w-96">
         <div class="flex justify-between items-center">
           <h2 class="text-lg font-bold">

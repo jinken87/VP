@@ -8,3 +8,4 @@
 // export default defineNuxtPlugin((nuxtApp) => {
 //   nuxtApp.provide("dayjs", dayjs);
 // });
+export default defineNuxtPlugin(() => {});
