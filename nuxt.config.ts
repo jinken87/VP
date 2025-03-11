@@ -8,9 +8,14 @@ export default defineNuxtConfig({
   //   },
   // },
   app: {
-    baseURL: "https://jinken87.github.io/VP/",
+    baseURL: "/VP/",
   },
 
+  nitro: {
+    prerender: {
+      routes: ["/", "/vi/", "/zh/", "/en/", "/200.html", "/404.html"],
+    },
+  },
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => ["marquee"].includes(tag),
@@ -54,12 +59,14 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: "locales/",
     strategy: "prefix",
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: "i18n_redirected",
-      alwaysRedirect: true,
-      fallbackLocale: "zh",
-    },
+    // strategy: "prefix_except_default",
+    // detectBrowserLanguage: {
+    //   useCookie: true,
+    //   cookieKey: "i18n_redirected",
+    //   alwaysRedirect: true,
+    //   fallbackLocale: "zh",
+    // },
+    detectBrowserLanguage: false,
   },
   // pwa: {
   //   manifest: {
