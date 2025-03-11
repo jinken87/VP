@@ -8,8 +8,9 @@ export default defineNuxtConfig({
   //   },
   // },
   app: {
-    baseURL: "/VP/",
-    cdnURL: "https://jinken87.github.io/VP/",
+    baseURL: process.env.NODE_ENV === "production" ? "/VP/" : "/", // 根據環境設置 baseURL
+    buildAssetsDir: "static", // 避免使用下劃線開頭的目錄名稱
+    // cdnURL: "https://jinken87.github.io/VP/",
   },
 
   nitro: {
