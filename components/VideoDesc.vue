@@ -1,7 +1,11 @@
 <template>
   <div class="bg-white rounded-lg shadow p-6">
-    <div @click="goToDetail(video.id)">
-      <div class="text-2xl font-bold mb-4">{{ video.title }}</div>
+    <div>
+      <div class="text-2xl font-bold mb-4">
+        <span class="cursor-pointer" @click="goToDetail(video.id)">
+          {{ video.title }}
+        </span>
+      </div>
       <div class="text-sm font-bold mb-4">
         {{ video.description || "-" }}
       </div>
@@ -31,6 +35,7 @@
         </div>
       </div>
       <button
+        v-if="!isMy"
         class="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600"
         @click="toggleSubscription(video.user_id)"
       >
@@ -63,6 +68,10 @@ const subscribeStore = useSubsciption();
 
 const userInfo = computed(() => loginStore.userInfo);
 const userId = computed(() => userInfo.value.id);
+
+const isMy = computed(() => {
+  return userInfo.value?.username === video.value.username;
+});
 
 const fetchSubscriptions = () => {
   subscribeStore.fetchSubscriptions(userId.value);

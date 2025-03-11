@@ -3,7 +3,7 @@
   <div class="flex w-full flex-wrap gap-4">
     <!-- <span>{{ subscribeStore.subscriptions }}</span> -->
     <div v-for="video in props.videoList" :key="video.id">
-      <video :src="video.url" class="w-[600px] h-[480px]" controls></video>
+      <video :src="video.url" class="w-[600px]" controls></video>
       <VideoDesc :videoData="video" />
     </div>
   </div>

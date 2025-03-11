@@ -1,6 +1,6 @@
 <template>
   <div class="text-red-800 max-w-screen-lg relative">
-    <h2 class="text-2xl font-bold mb-4">為你推薦</h2>
+    <h2 class="text-2xl font-bold mb-4">{{ "我的影片" }}</h2>
 
     <!-- 只有當 videoList 有數據時才渲染 Swiper -->
     <div class="relative h-[200px] px-[50px]">
@@ -14,7 +14,7 @@
         class="swiper-container h-[200px] static"
       >
         <SwiperSlide
-          v-for="video in videoList"
+          v-for="video in props.videoList"
           :key="video.id"
           class="min-w-[192px] w-[192px]"
         >
@@ -40,7 +40,7 @@
       </Swiper>
 
       <!-- 如果 videoList 為空，顯示訊息 -->
-      <p v-else class="text-center text-gray-400">暫無推薦影片</p>
+      <p v-else class="text-center text-gray-400">{{ "暫無推薦影片" }}</p>
     </div>
   </div>
 </template>

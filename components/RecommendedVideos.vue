@@ -35,32 +35,11 @@ const { t } = useI18n();
 
 const hotVideos = computed(() => {
   return props.videoList;
-  // return props.videoList.filter((video) => video.recommended);
 });
-const recommendedVideos = ref([
-  {
-    id: 1,
-    title: "推薦視頻 1",
-    channel: "頻道 1",
-    views: "10萬",
-    uploadTime: "1 天前",
-    thumbnail: "/placeholder.svg?height=90&width=160&text=Video+1",
-  },
-  {
-    id: 2,
-    title: "推薦視頻 2",
-    channel: "頻道 2",
-    views: "5萬",
-    uploadTime: "2 天前",
-    thumbnail: "/placeholder.svg?height=90&width=160&text=Video+2",
-  },
-  {
-    id: 3,
-    title: "推薦視頻 3",
-    channel: "頻道 3",
-    views: "8萬",
-    uploadTime: "3 天前",
-    thumbnail: "/placeholder.svg?height=90&width=160&text=Video+3",
-  },
-]);
+watch(
+  () => props.videoList,
+  () => {
+    console.log("0987654dfghjkl7777777", props.videoList);
+  }
+);
 </script>

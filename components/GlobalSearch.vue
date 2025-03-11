@@ -30,11 +30,27 @@
     </form>
     <div
       v-if="isSearch"
-      class="absolute w-[400px] h-[300px] mt-1 flex flex-col justify-center rounded-2xl bg-white text-purple-500"
+      class="absolute w-[400px] h-[300px] mt-1 flex flex-col justify-center rounded-2xl bg-white text-purple-500 shadow"
     >
-      <div class="p-4 text-2xl text-black cursor-pointer">
+      <!-- <div class="p-4 text-2xl text-black cursor-pointer">
         <span class="" @click="setSelectValue(1)">{{ "作者" }}</span>
         <span class=" " @click="setSelectValue(2)">{{ "影片" }}</span>
+      </div> -->
+      <div
+        class="relative flex items-end gap-4 py-2 px-2 text-2xl border-b-[1px] border-gray-600"
+      >
+        <span
+          :class="{ 'font-bold  text-[rgb(239,204,227)]': isVideo }"
+          class="cursor-pointer"
+          @click="setSelectValue(EntityType.VIDEO)"
+          >{{ "影片" }}</span
+        >
+        <span
+          :class="{ 'font-bold  text-[rgb(239,204,227)]': !isVideo }"
+          class="cursor-pointer"
+          @click="setSelectValue(EntityType.USER)"
+          >{{ "作者" }}</span
+        >
       </div>
       <div
         v-if="emptyResults"
@@ -110,6 +126,8 @@ const selectValue = ref(EntityType.VIDEO);
 const searchQuery = ref("");
 const searchResults = ref([]);
 const emptyResults = ref(t("search_cannot_be_empty"));
+
+const isVideo = computed(() => selectValue.value === EntityType.VIDEO);
 
 const openSearch = async () => {
   isSearch.value = true;
