@@ -17,6 +17,9 @@ export default defineNuxtConfig({
       routes: ["/", "/vi/", "/zh/", "/en/", "/200.html", "/404.html"],
     },
   },
+  routeRules: {
+    "/**": { prerender: true }, // ✅ 確保所有路由都能生成
+  },
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => ["marquee"].includes(tag),
