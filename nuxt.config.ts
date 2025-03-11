@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   // },
   app: {
     baseURL: "/VP/",
+    cdnURL: "https://jinken87.github.io/VP/",
   },
 
   nitro: {
