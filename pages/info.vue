@@ -47,7 +47,7 @@
           <VideoSlider :videoList="videoList" />
         </div>
         <div v-else>
-          {{ 暫無影片 }}
+          {{ "暫無影片" }}
         </div>
       </div>
       <div v-else class="pb-2">
