@@ -7,6 +7,10 @@ export default defineNuxtConfig({
   //     ],
   //   },
   // },
+  app: {
+    baseURL: "https://jinken87.github.io/VP/",
+  },
+
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => ["marquee"].includes(tag),
@@ -24,7 +28,6 @@ export default defineNuxtConfig({
     host: "0.0.0.0",
     port: 3000,
   },
-
   modules: [
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
