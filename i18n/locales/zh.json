@@ -24,5 +24,20 @@
   "recommended_videos": "推薦影片",
   "days_ago": "{days} 天前",
   "subscription_count": "{count} 訂閱數",
-  "choose_language": "選擇語言"
+  "choose_language": "選擇語言",
+  "scrollToBottom": "滾至底部",
+  "confirm": "確定",
+  "cancel": "取消",
+  "noAccount": "還沒有帳號嗎 ？ 前往註冊",
+  "hasAccount": "已有帳號？ 前往登入",
+  "noVideos": "暫無影片",
+  "about": "關於",
+  "videos": "影片",
+  "userInfo": "用戶資訊",
+  "socialMedia": "社群軟體",
+  "inputMessage": "輸入訊息...",
+  "author": "作者",
+  "myVideos": "我的影片",
+  "unsubscribe": "取消訂閱",
+  "language": "中文"
 }

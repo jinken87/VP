@@ -10,10 +10,10 @@
         <!-- 導航連結 -->
 
         <NuxtLink
-          :to="localePath('/video?id=5')"
+          :to="localePath('/')"
           class="text-gray-600 hover:text-rose-600 transition"
         >
-          {{ t("popular") }}
+          {{ t("home") }}
         </NuxtLink>
         <NuxtLink
           :to="localePath('/subscriptions')"
@@ -37,7 +37,9 @@
       <!-- 搜索 & 登入按鈕 -->
       <div class="flex items-center space-x-6">
         <GlobalSearch />
+
         <div
+          v-if="userInfo"
           class="userinfo gap-2 flex p-2 items-center cursor-pointer"
           @click="goToUserInfo(userInfo?.username)"
         >

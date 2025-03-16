@@ -40,16 +40,22 @@
         class="relative flex items-end gap-4 py-2 px-2 text-2xl border-b-[1px] border-gray-600"
       >
         <span
-          :class="{ 'font-bold  text-[rgb(239,204,227)]': isVideo }"
-          class="cursor-pointer"
+          :class="{
+            'font-bold  text-[rgb(239,204,227)] border-b-2 border-[rgb(239,204,227)]':
+              isVideo,
+          }"
+          class="cursor-pointer hover:border-b-2 border-[rgb(239,204,227)]"
           @click="setSelectValue(EntityType.VIDEO)"
-          >{{ "影片" }}</span
+          >{{ t("videos") }}</span
         >
         <span
-          :class="{ 'font-bold  text-[rgb(239,204,227)]': !isVideo }"
-          class="cursor-pointer"
+          :class="{
+            'font-bold  text-[rgb(239,204,227)] border-b-2 border-[rgb(239,204,227)]':
+              !isVideo,
+          }"
+          class="cursor-pointer hover:border-b-2 border-[rgb(239,204,227)]"
           @click="setSelectValue(EntityType.USER)"
-          >{{ "作者" }}</span
+          >{{ t("author") }}</span
         >
       </div>
       <div

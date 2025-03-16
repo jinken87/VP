@@ -34,11 +34,6 @@
       <RecommendedVideos :videoList="recommendedVideos" />
     </div>
   </main>
-  <!-- <el-dialog v-model="abc" title="登入" width="30%">
-    <template #default>
-      <p>5678900000</p>
-    </template>
-  </el-dialog> -->
   <LoginModal
     v-if="showLoginModal"
     @close="showLoginModal = false"
@@ -49,11 +44,8 @@
 <script setup>
 import { useUserStore } from "~/stores/users";
 import useVideoStore from "~/stores/videos";
-// import useLoginStore from "~/stores/loginAndRegister";
-// import { ElDialog } from "element-plus";
 const abc = ref(false);
 
-// const loginStore = useLoginStore()
 const supabase = useSupabase();
 
 const useUser = useUserStore();
@@ -93,12 +85,10 @@ const comments = ref([
 const login = (username) => {
   isLoggedIn.value = true;
   showLoginModal.value = false;
-  console.log(`${username} 已登入`);
 };
 
 const abcc = () => {
   abc.value = !abc.value;
-  console.log("dd", abc.value);
 };
 
 definePageMeta({
@@ -108,6 +98,5 @@ definePageMeta({
 onMounted(async () => {
   await useUser.getUsers();
   await videoStore.getVideo();
-  console.log("用戶列表:", userList.value);
 });
 </script>

@@ -15,7 +15,9 @@
             {{ video.description }}
           </p>
           <p class="text-sm text-gray-500">
-            {{ video.views }} 次觀看 · {{ video.uploadTime }}
+            <!-- {{ video.views }} 次觀看 · {{ video.uploadTime }} -->
+            {{ t("views", { times: video.views || 0 }) }} ·
+            <span>{{ getPassTime(video.created_at) }}</span>
           </p>
         </div>
       </div>

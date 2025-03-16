@@ -1,6 +1,6 @@
 <template>
   <div class="text-red-800 max-w-screen-lg relative">
-    <h2 class="text-2xl font-bold mb-4">{{ "我的影片" }}</h2>
+    <h2 class="text-2xl font-bold mb-4">{{ t("myVideos") }}</h2>
 
     <!-- 只有當 videoList 有數據時才渲染 Swiper -->
     <div class="relative h-[200px] px-[50px]">
@@ -29,18 +29,20 @@
           </div>
           <div class="mt-2">
             <p class="text-sm font-semibold leading-tight">
-              {{ video?.title || "未知標題" }}
+              {{ video?.title || "" }}
             </p>
             <p class="text-xs text-gray-400">
-              觀看次數：{{ video?.views || "未知次數" }} ·
-              {{ video?.time || "未知時間" }}
+              <!-- 觀看次數：{{ video?.views || "未知次數" }} · -->
+              <!-- {{ video?.time || "未知時間" }} -->
+              {{ t("views", { times: video.views || 0 }) }} ·
+              <span>{{ getPassTime(video.created_at) }}</span>
             </p>
           </div>
         </SwiperSlide>
       </Swiper>
 
       <!-- 如果 videoList 為空，顯示訊息 -->
-      <p v-else class="text-center text-gray-400">{{ "暫無推薦影片" }}</p>
+      <p v-else class="text-center text-gray-400">{{ t("noVideos") }}</p>
     </div>
   </div>
 </template>
@@ -58,6 +60,8 @@ const props = defineProps({
     default: () => [],
   },
 });
+
+const { t } = useI18n();
 /* 預設空陣列，確保不會 undefined */
 const videoList = ref([]);
 

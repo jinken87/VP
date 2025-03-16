@@ -39,7 +39,7 @@
         class="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600"
         @click="toggleSubscription(video.user_id)"
       >
-        {{ isSubscribed(video.user_id) ? "取消訂閱" : t("subscribe") }}
+        {{ isSubscribed(video.user_id) ? t("unsubscribe") : t("subscribe") }}
       </button>
     </div>
   </div>

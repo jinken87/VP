@@ -48,7 +48,6 @@
       </div>
     </div> -->
   </div>
-  <div>{{ videoData }}</div>
 </template>
 
 <script setup>

@@ -26,13 +26,13 @@
           :class="{ 'font-bold  text-[rgb(239,204,227)]': !isVideo }"
           class="cursor-pointer"
           @click="switchTab(EntityType.USER)"
-          >{{ "關於" }}</span
+          >{{ t("about") }}</span
         >
         <span
           :class="{ 'font-bold  text-[rgb(239,204,227)]': isVideo }"
           class="cursor-pointer"
           @click="switchTab(EntityType.VIDEO)"
-          >{{ "影片" }}</span
+          >{{ t("videos") }}</span
         >
         <div
           class="absolute bottom-0 h-[3px] bg-red-600 transition-all duration-300"
@@ -47,17 +47,17 @@
           <VideoSlider :videoList="videoList" />
         </div>
         <div v-else>
-          {{ "暫無影片" }}
+          {{ t("noVideos") }}
         </div>
       </div>
       <div v-else class="pb-2">
         <div class="user-table self-start">
-          <el-card style="max-width: 890px">
+          <el-card style="max-width: 890px; padding-left: 20px">
             <template #header>
-              <strong>用戶資訊</strong>
+              <strong>{{ t("userInfo") }}</strong>
             </template>
 
-            <el-form label-width="80px">
+            <el-form label-width="120px">
               <el-form-item
                 v-for="(item, index) in formList"
                 :label="stageData[item].label"
@@ -101,7 +101,7 @@
       <div>
         <span
           class="relative flex items-end gap-4 pb-2 text-2xl border-b-[1px] border-gray-600"
-          >{{ "社群軟體" }}</span
+          >{{ t("socialMedia") }}</span
         >
         <div class="social-media flex justify-between mt-2 mx-7 mb-16">
           <div

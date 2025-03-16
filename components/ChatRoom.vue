@@ -69,7 +69,7 @@
         v-model="newMessage"
         class="flex-1 rounded-3xl pl-4 bg-gray-200 focus:outline-none focus:border-transparent"
         @keyup.enter="sendMessage"
-        placeholder="輸入訊息..."
+        :placeholder="t('inputMessage')"
       />
       <img
         class="pr-4 w-12 h-8 cursor-pointer"

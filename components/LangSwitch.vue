@@ -1,8 +1,8 @@
 <template>
   <!-- <Dialog v-model="show" :content="radioGroup" :submit-fuction="setLang" /> -->
-  <Dialog v-model="show">
+  <Dialog v-model="show" :title="t('choose_language')">
     <template #content>
-      <CarouselPart />
+      <!-- <CarouselPart /> -->
       <div class="flex flex-col space-y-2">
         <label
           v-for="lang in langList"
@@ -22,23 +22,25 @@
       </div>
     </template>
     <template #footer>
-      <button
-        @click="setLang(selectedLang)"
-        class="px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        確定
-      </button>
-      <button
-        @click="show = false"
-        class="px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        取消
-      </button>
+      <div class="flex items-center space-x-4">
+        <button
+          @click="setLang(selectedLang)"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          {{ t("confirm") }}
+        </button>
+        <button
+          @click="show = false"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          {{ t("cancel") }}
+        </button>
+      </div>
     </template>
   </Dialog>
 </template>
 <script setup>
-const { setLocale } = useI18n();
+const { t, setLocale } = useI18n();
 const show = defineModel("show");
 
 const langList = [

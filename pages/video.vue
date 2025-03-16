@@ -1,11 +1,5 @@
 <template>
   <div>
-    <!-- <p @click="showLoginModal">123</p> -->
-    <!-- <p>{{ userList }}</p> -->
-    <!-- <div>{{ videoList }}</div> -->
-    <!-- <div>{{ videoId }}</div> -->
-    <!-- <div>{{ videoData }}</div> -->
-    <!-- <span @click="go">go</span> -->
     <VideoPlayer :videoData="videoData" />
   </div>
 </template>
@@ -53,6 +47,5 @@ const go = () => {
 onMounted(async () => {
   await useUser.getUsers();
   await videoStore.getVideo();
-  console.log("用戶列表:", userList.value);
 });
 </script>

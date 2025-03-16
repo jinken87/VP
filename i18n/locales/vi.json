@@ -24,5 +24,20 @@
   "recommended_videos": "Video đề xuất",
   "days_ago": "{days} ngày trước",
   "subscription_count": "{count} người đăng ký",
-  "choose_language": "Chọn ngôn ngữ"
+  "choose_language": "Chọn ngôn ngữ",
+  "scrollToBottom": "Cuộn xuống cuối",
+  "confirm": "Xác nhận",
+  "cancel": "Hủy",
+  "noAccount": "Chưa có tài khoản? Đăng ký",
+  "hasAccount": "Đã có tài khoản? Đăng nhập",
+  "noVideos": "Chưa có video",
+  "about": "Giới thiệu",
+  "videos": "Video",
+  "userInfo": "Thông tin người dùng",
+  "socialMedia": "Mạng xã hội",
+  "inputMessage": "Nhập tin nhắn...",
+  "author": "Tác giả",
+  "myVideos": "Video của tôi",
+  "unsubscribe": "Hủy đăng ký",
+  "language": "Tiếng Việt"
 }

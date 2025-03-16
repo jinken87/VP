@@ -64,10 +64,10 @@
     <template #footer>
       <el-divider>
         <span
-          class="flex-auto mx-4 text-gray-500 cursor-pointer"
+          class="flex flex-auto text-center text-gray-500 cursor-pointer"
           @click="switchLoginOrRegister"
         >
-          {{ isRegister ? t("login") : t("register") }}</span
+          {{ isRegister ? t("hasAccount") : t("noAccount") }}</span
         >
       </el-divider>
     </template>
