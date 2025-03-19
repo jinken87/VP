@@ -52,7 +52,6 @@ const langList = [
 const selectedLang = ref("en");
 
 const setLang = (lang) => {
-  console.log("切換語言:", lang);
   setLocale(lang);
   show.value = false; // 關閉彈窗
 };
