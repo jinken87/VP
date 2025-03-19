@@ -39,5 +39,15 @@
   "author": "作者",
   "myVideos": "我的影片",
   "unsubscribe": "取消訂閱",
-  "language": "中文"
+  "language": "中文",
+  "social_facebook": "Facebook",
+  "social_message": "messenger",
+  "social_x": "X",
+  "social_instagram": "Instagram",
+  "social_wechat": "Wechat",
+  "link_copy": "複製連結",
+  "photo_save": "儲存圖片",
+  "share": "分享",
+  "vip": "VIP",
+  "description": "描述"
 }

@@ -39,7 +39,7 @@
         <GlobalSearch />
 
         <div
-          v-if="userInfo"
+          v-if="Object.keys(userInfo).length > 0"
           class="userinfo gap-2 flex p-2 items-center cursor-pointer"
           @click="goToUserInfo(userInfo?.username)"
         >

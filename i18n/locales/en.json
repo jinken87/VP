@@ -39,5 +39,15 @@
   "author": "Author",
   "myVideos": "My Videos",
   "unsubscribe": "Unsubscribe",
-  "language": "English"
+  "language": "English",
+  "social_facebook": "Facebook",
+  "social_message": "Messenger",
+  "social_x": "X",
+  "social_instagram": "Instagram",
+  "social_wechat": "Wechat",
+  "link_copy": "Copy link",
+  "photo_save": "Save image",
+  "share": "Share",
+  "vip": "VIP",
+  "description": "Description"
 }

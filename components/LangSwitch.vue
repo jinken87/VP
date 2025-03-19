@@ -45,7 +45,7 @@ const show = defineModel("show");
 
 const langList = [
   { id: "en", name: "English" },
-  { id: "zh-tw", name: "中文" },
+  { id: "zh", name: "中文" },
   { id: "vi", name: "Tiếng Việt" },
 ];
 

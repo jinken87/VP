@@ -65,13 +65,17 @@ export default defineNuxtConfig({
     langDir: "locales/",
     strategy: "prefix",
     // strategy: "prefix_except_default",
+    // detectBrowserLanguage: false,
+    detectBrowserLanguage: {
+      useCookie: false,
+      fallbackLocale: "zh",
+    },
     // detectBrowserLanguage: {
     //   useCookie: true,
     //   cookieKey: "i18n_redirected",
     //   alwaysRedirect: true,
     //   fallbackLocale: "zh",
     // },
-    detectBrowserLanguage: false,
   },
   // pwa: {
   //   manifest: {

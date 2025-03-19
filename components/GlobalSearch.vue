@@ -97,9 +97,9 @@
               ></div>
             </div>
 
-            <div>
+            <!-- <div>
               {{ item.id }}
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

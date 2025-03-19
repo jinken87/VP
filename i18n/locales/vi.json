@@ -39,5 +39,15 @@
   "author": "Tác giả",
   "myVideos": "Video của tôi",
   "unsubscribe": "Hủy đăng ký",
-  "language": "Tiếng Việt"
+  "language": "Tiếng Việt",
+  "social_facebook": "Facebook",
+  "social_message": "Messenger",
+  "social_x": "X",
+  "social_instagram": "Instagram",
+  "social_wechat": "Wechat",
+  "link_copy": "Sao chép liên kết",
+  "photo_save": "Lưu hình ảnh",
+  "share": "Chia sẻ",
+  "vip": "VIP",
+  "description": "Mô tả"
 }
