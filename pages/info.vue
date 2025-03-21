@@ -151,6 +151,7 @@ import ConfirmIocn from "~/assets/img/confirm-icon.png";
 import CancelIcon from "~/assets/img/cancel-icon.png";
 import { useNuxtApp } from "#app";
 import { useRequestURL } from "#app";
+import { isClient } from "@vueuse/core";
 
 const { t } = useI18n();
 const route = useRoute();
@@ -293,15 +294,17 @@ const actionFunctions = (item, e) => {
 };
 
 const updateUnderline = () => {
-  nextTick(() => {
-    const activeTab = document.querySelectorAll("span.cursor-pointer")[
-      tabValue.value === EntityType.USER ? 1 : 2
-    ];
-    if (activeTab) {
-      underlineWidth.value = activeTab.offsetWidth;
-      underlinePosition.value = activeTab.offsetLeft;
-    }
-  });
+  if (isClient) {
+    nextTick(() => {
+      const activeTab = document.querySelectorAll("span.cursor-pointer")[
+        tabValue.value === EntityType.USER ? 1 : 2
+      ];
+      if (activeTab) {
+        underlineWidth.value = activeTab.offsetWidth;
+        underlinePosition.value = activeTab.offsetLeft;
+      }
+    });
+  }
 };
 
 const switchTab = (item) => {
