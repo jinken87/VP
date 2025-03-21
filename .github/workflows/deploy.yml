@@ -17,6 +17,11 @@ jobs:
         with:
           node-version: 18
 
+      - name: Setup environment variables
+        run: |
+          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> $GITHUB_ENV
+          echo "VITE_ANON_KEY=${{ secrets.VITE_ANON_KEY }}" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: npm install
 
